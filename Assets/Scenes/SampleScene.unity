@@ -853,6 +853,11 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 7282994650679325966, guid: ca1e7e30266fd3748a83b4b85402d268,
+        type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7282994650679326195, guid: ca1e7e30266fd3748a83b4b85402d268,
         type: 3}
       propertyPath: m_LocalPosition.x
