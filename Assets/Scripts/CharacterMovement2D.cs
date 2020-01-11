@@ -18,7 +18,7 @@ public class CharacterMovement2D : MonoBehaviour
     private bool touchingWall;
     private bool isJumping;
     private float jumpFallMultiplier = 2.5f;
-    private float layerDetectorRadius = 0.5f;
+    private float layerDetectorRadius = 0.3f;
     private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
     private bool facingRight = true;
 
