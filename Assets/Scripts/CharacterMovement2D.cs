@@ -14,9 +14,9 @@ public class CharacterMovement2D : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Animator animator;
-    private bool onGround;
+    public bool onGround;
     private bool touchingWall;
-    private bool isJumping;
+    public bool isJumping;
     private float jumpFallMultiplier = 2.5f;
     private float layerDetectorRadius = 0.3f;
     private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
@@ -58,8 +58,8 @@ public class CharacterMovement2D : MonoBehaviour
 
         // Update animation
         animator.SetFloat("runningSpeed", Mathf.Abs(rigidBody.velocity.x));
-        animator.SetFloat("airborneSpeed", Mathf.Abs(rigidBody.velocity.y));
-        animator.SetBool("onGround", onGround);
+        //animator.SetFloat("airborneSpeed", Mathf.Abs(rigidBody.velocity.y));
+        //animator.SetBool("onGround", onGround);
     }
 
     // Move player's x position when moving right/left and y if player jumps
