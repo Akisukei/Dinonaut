@@ -7,8 +7,7 @@ public class CharacterMovement2D : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 350f;
     [SerializeField] private float movementSmoothing = 0.01f;       // time that takes to move character (read docs on SmoothDamp)
-    [SerializeField] private float jumpForce = 8;
-    [SerializeField] private float lowJumpGravityMultiplier = 2f;   // make jump low by increasing gravity on character
+    [SerializeField] private float jumpForce = 5;
     [SerializeField] private LayerMask groundLayer;                 // what is considered ground for character
     [SerializeField] private LayerMask wallLayer;                   // what is considered a wall for character
     [SerializeField] private Transform layerDetector;               // empty object that's positioned center of an area to detect (i.e. feet)
@@ -18,7 +17,6 @@ public class CharacterMovement2D : MonoBehaviour
     private bool onGround;
     private bool touchingWall;
     private bool isJumping;
-    private bool didWallJump = false;
     private float jumpFallMultiplier = 2.5f;
     private float layerDetectorRadius = 0.5f;
     private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
@@ -45,7 +43,7 @@ public class CharacterMovement2D : MonoBehaviour
 
         // Within a radius of the ground detector, find all layers of type ground within that area
         Collider2D[] colliders = Physics2D.OverlapCircleAll(layerDetector.position, layerDetectorRadius, groundLayer);
-        for(int i = 0; i < colliders.Length; i++)
+        for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)  // ensure collider ISNT its own character collider
                 onGround = true;
@@ -77,29 +75,19 @@ public class CharacterMovement2D : MonoBehaviour
 
         // Make sure player can't jump again until they're on ground and let go of jump button
         if (onGround && !Input.GetButton("Jump"))
-        {
             isJumping = false;
-            didWallJump = false;
-        }
 
         // Move player's y position if player jumps OR does a wall jump
-        if (jumpPressed && (onGround && !isJumping || touchingWall && !didWallJump))
+        if (jumpPressed && onGround && !isJumping)
         {
-            if (touchingWall && !didWallJump) didWallJump = true;
-
             isJumping = true;
             rigidBody.velocity = Vector2.up * jumpForce;
         }
-
         // Modify player's falling speed by modifying gravity scale
-        else if(isJumping)
+        else if (isJumping && rigidBody.velocity.y < 0)
         {
-            // when player wants to do low jumping, increase gravity before falling
             // note we substract -1 with multiplier because engine already apply 1 multiple of gravity 
-            if (rigidBody.velocity.y > 0 && !Input.GetButton("Jump"))
-                rigidBody.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpGravityMultiplier - 1) * Time.fixedDeltaTime;
-            else if (rigidBody.velocity.y < 0)
-                rigidBody.velocity += Vector2.up * Physics2D.gravity.y * (jumpFallMultiplier - 1) * Time.fixedDeltaTime;
+            rigidBody.velocity += Vector2.up * Physics2D.gravity.y * (jumpFallMultiplier - 1) * Time.fixedDeltaTime;
         }
 
         // flip character when moving left or right

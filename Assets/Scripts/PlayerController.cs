@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         // Get user button inputs
         moveHorizontal = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
     }
 
