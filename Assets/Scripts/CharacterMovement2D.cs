@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement2D : MonoBehaviour
@@ -11,6 +12,9 @@ public class CharacterMovement2D : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;                 // what is considered ground for character
     [SerializeField] private LayerMask wallLayer;                   // what is considered a wall for character
     [SerializeField] private Transform layerDetector;               // empty object that's positioned center of an area to detect (i.e. feet)
+
+    public AudioSource walkingGrassSfx;
+    public AudioSource walkingStoneSfx;
 
     private Rigidbody2D rigidBody;
     private Animator animator;
@@ -60,6 +64,11 @@ public class CharacterMovement2D : MonoBehaviour
 
         // Update animation
         animator.SetFloat("runningSpeed", Mathf.Abs(rigidBody.velocity.x));
+        if((walkingGrassSfx.isPlaying || walkingStoneSfx.isPlaying) && Mathf.Abs(rigidBody.velocity.x) <= 0.01)
+        {
+            walkingGrassSfx.Stop();
+            walkingStoneSfx.Stop();
+        }
     }
 
     // Move player's x position when moving right/left and y if player jumps
@@ -71,7 +80,11 @@ public class CharacterMovement2D : MonoBehaviour
             // Params: current position, target position, current velocity (modified by func), time to reach target (smaller = faster)
             Vector2 targetPosition = new Vector2(movement * movementSpeed, rigidBody.velocity.y);
             rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, targetPosition, ref curVelocity, movementSmoothing);
-            //soundPlayer.playWalkOnGrassSfx();
+
+            if (SceneManager.GetActiveScene().name == "LevelOneScene" && onGround && !walkingGrassSfx.isPlaying)
+                walkingGrassSfx.Play();
+            else if(onGround && !walkingStoneSfx.isPlaying)
+                walkingStoneSfx.Stop();
         }
 
         // Make sure player can't jump again until they're on ground and let go of jump button
