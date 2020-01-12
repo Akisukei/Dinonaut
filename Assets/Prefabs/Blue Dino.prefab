@@ -46,10 +46,9 @@ GameObject:
   - component: {fileID: 6923056684714183824}
   - component: {fileID: 6923056684714183823}
   - component: {fileID: 6923056684714183822}
-  - component: {fileID: 6923056684714183825}
   m_Layer: 0
-  m_Name: Dino
-  m_TagString: Untagged
+  m_Name: Blue Dino
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 6923056684714183816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.46, y: -1.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 6923056684372448874}
   m_Father: {fileID: 0}
@@ -197,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0925b40cc585f04459f4c311f9cc281c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 350
+  movementSpeed: 200
   movementSmoothing: 0.01
   jumpForce: 5
   groundLayer:
@@ -221,18 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 6923056684714183824}
 --- !u!114 &6923056684714183822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6923056684714183816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9738e189b1dd31141b6bc936606c8514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6923056684714183825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
