@@ -10445,7 +10445,7 @@ GameObject:
   - component: {fileID: 1817755464}
   m_Layer: 8
   m_Name: Tilemap_falling_floor_1
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

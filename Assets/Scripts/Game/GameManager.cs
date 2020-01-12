@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private CharacterMovement2D characterMovement2D;
 
+    private Vector3 lastPosition;
     private float lastHeight = -9;
     private Vector3 hotZonePosition;
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
             {
                 // Player reached a higher ground.
                 lastHeight = player.transform.position.y;
+                lastPosition = new Vector3(player.transform.position.x, lastHeight, 0);
                 //Debug.Log(lastHeight);
                 if(hotZone != null)
                 {
@@ -60,6 +62,13 @@ public class GameManager : MonoBehaviour
         if (first_lever != null && first_lever.GetComponent<Animator>().GetBool("leverFlipped"))
         {
             first_door.SetActive(false);
+        }
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Lava"))
+        {
+            transform.position = lastPosition;
         }
     }
 }
