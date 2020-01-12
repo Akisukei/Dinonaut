@@ -11370,7 +11370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e0513b278913b4ead5ad23a012e996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatingTilemap: {fileID: 0}
   target: {x: 0, y: -2, z: 0}
   timeToReachTarget: 3
 --- !u!1001 &2488497830774430941
@@ -11390,6 +11389,11 @@ PrefabInstance:
       propertyPath: lever2
       value: 
       objectReference: {fileID: 1294296019}
+    - target: {fileID: 2488497830070169707, guid: f14491d1c31e076479364cc613e59e70,
+        type: 3}
+      propertyPath: newLevel
+      value: EndScene
+      objectReference: {fileID: 0}
     - target: {fileID: 2808834718022552578, guid: f14491d1c31e076479364cc613e59e70,
         type: 3}
       propertyPath: m_LocalPosition.x
