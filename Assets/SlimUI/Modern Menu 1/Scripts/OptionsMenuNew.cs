@@ -33,18 +33,18 @@ public class OptionsMenuNew : MonoBehaviour {
 	public GameObject cameraeffectstext; 
 
 	[Header("GAME SETTINGS")]
-	public GameObject showhudtext;
-	public GameObject tooltipstext;
+	//public GameObject showhudtext;
+	//public GameObject tooltipstext;
 	public GameObject difficultynormaltext;
-	public GameObject difficultynormaltextLINE;
+	//public GameObject difficultynormaltextLINE;
 	public GameObject difficultyhardcoretext;
-	public GameObject difficultyhardcoretextLINE;
+	//public GameObject difficultyhardcoretextLINE;
 
 	[Header("CONTROLS SETTINGS")]
 	public GameObject invertmousetext;
 
 	// sliders
-	public GameObject musicSlider;
+	//public GameObject musicSlider;
 	public GameObject sensitivityXSlider;
 	public GameObject sensitivityYSlider;
 	public GameObject mouseSmoothSlider;
@@ -58,17 +58,17 @@ public class OptionsMenuNew : MonoBehaviour {
 	public void  Start (){
 		// check difficulty
 		if(PlayerPrefs.GetInt("NormalDifficulty") == 1){
-			difficultynormaltextLINE.gameObject.SetActive(true);
-			difficultyhardcoretextLINE.gameObject.SetActive(false);
+			//difficultynormaltextLINE.gameObject.SetActive(true);
+			//difficultyhardcoretextLINE.gameObject.SetActive(false);
 		}
 		else
 		{
-			difficultyhardcoretextLINE.gameObject.SetActive(true);
-			difficultynormaltextLINE.gameObject.SetActive(false);
+			//difficultyhardcoretextLINE.gameObject.SetActive(true);
+			//difficultynormaltextLINE.gameObject.SetActive(false);
 		}
 
 		// check slider values
-		musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+		//musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
 		sensitivityXSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("XSensitivity");
 		sensitivityYSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("YSensitivity");
 		mouseSmoothSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MouseSmoothing");
@@ -83,18 +83,18 @@ public class OptionsMenuNew : MonoBehaviour {
 
 		// check hud value
 		if(PlayerPrefs.GetInt("ShowHUD")==0){
-			showhudtext.GetComponent<TMP_Text>().text = "off";
+			//showhudtext.GetComponent<TMP_Text>().text = "off";
 		}
 		else{
-			showhudtext.GetComponent<TMP_Text>().text = "on";
+			//showhudtext.GetComponent<TMP_Text>().text = "on";
 		}
 
 		// check tool tip value
 		if(PlayerPrefs.GetInt("ToolTips")==0){
-			tooltipstext.GetComponent<TMP_Text>().text = "off";
+			//tooltipstext.GetComponent<TMP_Text>().text = "off";
 		}
 		else{
-			tooltipstext.GetComponent<TMP_Text>().text = "on";
+			//tooltipstext.GetComponent<TMP_Text>().text = "on";
 		}
 
 		// check shadow distance/enabled
@@ -199,7 +199,7 @@ public class OptionsMenuNew : MonoBehaviour {
 	}
 
 	public void  Update (){
-		sliderValue = musicSlider.GetComponent<Slider>().value;
+		//sliderValue = musicSlider.GetComponent<Slider>().value;
 		sliderValueXSensitivity = sensitivityXSlider.GetComponent<Slider>().value;
 		sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 		sliderValueSmoothing = mouseSmoothSlider.GetComponent<Slider>().value;
@@ -217,7 +217,7 @@ public class OptionsMenuNew : MonoBehaviour {
 	}
 
 	public void MusicSlider (){
-		PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+		//PlayerPrefs.SetFloat("MusicVolume", sliderValue);
 	}
 
 	public void  SensitivityXSlider (){
@@ -237,11 +237,11 @@ public class OptionsMenuNew : MonoBehaviour {
 	public void  ShowHUD (){
 		if(PlayerPrefs.GetInt("ShowHUD")==0){
 			PlayerPrefs.SetInt("ShowHUD",1);
-			showhudtext.GetComponent<TMP_Text>().text = "on";
+			//showhudtext.GetComponent<TMP_Text>().text = "on";
 		}
 		else if(PlayerPrefs.GetInt("ShowHUD")==1){
 			PlayerPrefs.SetInt("ShowHUD",0);
-			showhudtext.GetComponent<TMP_Text>().text = "off";
+			//showhudtext.GetComponent<TMP_Text>().text = "off";
 		}
 	}
 
@@ -272,24 +272,24 @@ public class OptionsMenuNew : MonoBehaviour {
 	public void  ToolTips (){
 		if(PlayerPrefs.GetInt("ToolTips")==0){
 			PlayerPrefs.SetInt("ToolTips",1);
-			tooltipstext.GetComponent<TMP_Text>().text = "on";
+			//tooltipstext.GetComponent<TMP_Text>().text = "on";
 		}
 		else if(PlayerPrefs.GetInt("ToolTips")==1){
 			PlayerPrefs.SetInt("ToolTips",0);
-			tooltipstext.GetComponent<TMP_Text>().text = "off";
+			//tooltipstext.GetComponent<TMP_Text>().text = "off";
 		}
 	}
 
 	public void  NormalDifficulty (){
-		difficultyhardcoretextLINE.gameObject.SetActive(false);
-		difficultynormaltextLINE.gameObject.SetActive(true);
+		//difficultyhardcoretextLINE.gameObject.SetActive(false);
+		//difficultynormaltextLINE.gameObject.SetActive(true);
 		PlayerPrefs.SetInt("NormalDifficulty",1);
 		PlayerPrefs.SetInt("HardCoreDifficulty",0);
 	}
 
 	public void  HardcoreDifficulty (){
-		difficultyhardcoretextLINE.gameObject.SetActive(true);
-		difficultynormaltextLINE.gameObject.SetActive(false);
+		//difficultyhardcoretextLINE.gameObject.SetActive(true);
+		//difficultynormaltextLINE.gameObject.SetActive(false);
 		PlayerPrefs.SetInt("NormalDifficulty",0);
 		PlayerPrefs.SetInt("HardCoreDifficulty",1);
 	}
