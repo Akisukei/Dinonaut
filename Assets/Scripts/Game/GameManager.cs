@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private float lastHeight = -9999;
     private Vector3 hotZonePosition;
+    private Vector3 lastPosition;
 
     void Awake()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("New height");
                 // Player reached a higher ground.
                 lastHeight = player.transform.position.y;
+                lastPosition = new Vector3(player.transform.position.x, lastHeight, 0);
                 //Debug.Log(lastHeight);
                 if(hotZone != null)
                 {
@@ -61,6 +63,14 @@ public class GameManager : MonoBehaviour
         if (first_lever != null && first_lever.GetComponent<Animator>().GetBool("leverFlipped"))
         {
             first_door.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Lava"))
+        {
+            transform.position = lastPosition;
         }
     }
 }
