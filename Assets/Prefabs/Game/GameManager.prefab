@@ -45,5 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   hotZone: {fileID: 0}
+  first_lever: {fileID: 0}
+  first_door: {fileID: 0}
   t: 0
   timeToReachPlayer: 0

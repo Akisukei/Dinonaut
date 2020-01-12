@@ -8,6 +8,7 @@ TagManager:
   - Teleport
   - HotZone
   - MovingPlatform
+  - Lava
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Background
   - HotZone
   - Lever
-  - 
+  - Lava
   - 
   - 
   - 

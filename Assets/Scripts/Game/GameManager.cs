@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private CharacterMovement2D characterMovement2D;
 
-    private float lastHeight = -9;
+    private float lastHeight = -9999;
     private Vector3 hotZonePosition;
 
     void Awake()
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         {
             if (lastHeight < player.transform.position.y && Mathf.Abs(player.transform.position.y - lastHeight) > 1)
             {
+                Debug.Log("New height");
                 // Player reached a higher ground.
                 lastHeight = player.transform.position.y;
                 //Debug.Log(lastHeight);
