@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayMyAnimation : MonoBehaviour
 {
     [SerializeField] private Animator myAnimationController;
-    private bool wasAlreadyFlipped;
+    private bool leverFlipped;
 
     private void Awake()
     {
-        wasAlreadyFlipped = false;
+        leverFlipped = false;
     }
     void OnTriggerStay2D(Collider2D other)
     {
@@ -17,14 +17,11 @@ public class PlayMyAnimation : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Animator>().GetBool("isKicking"))
             {
-                myAnimationController.SetBool("leverFlipped", true);
-
-                if (wasAlreadyFlipped)
-                    wasAlreadyFlipped = false;
+                if (leverFlipped)
+                    leverFlipped = false;
                 else
-                    wasAlreadyFlipped = true;
-
-                myAnimationController.SetBool("wasAlreadyFlipped", wasAlreadyFlipped);
+                    leverFlipped = true;
+                myAnimationController.SetBool("leverFlipped", leverFlipped);
             }
         }
     }
