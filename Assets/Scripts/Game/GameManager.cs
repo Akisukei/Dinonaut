@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             {
                 // Player reached a higher ground.
                 lastHeight = player.transform.position.y;
-                Debug.Log(lastHeight);
+                //Debug.Log(lastHeight);
 
                 // Move hot zone up
                 hotZonePosition.y = lastHeight - 1.25f;
