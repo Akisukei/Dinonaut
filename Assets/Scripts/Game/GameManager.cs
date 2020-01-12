@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         }
         if (first_lever.GetComponent<Animator>().GetBool("leverFlipped"))
         {
-            Debug.Log("OPENEDS");
             first_door.SetActive(false);
         }
     }
