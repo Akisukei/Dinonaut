@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterMovement2D movementController;
 
-    private float moveHorizontal;
-    private bool jumpPressed;
+    private float moveHorizontal = 0f;
+    private bool jumpPressed = false;
 
     // Start is called before the first frame update
     void Start()

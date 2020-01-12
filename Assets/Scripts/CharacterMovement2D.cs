@@ -14,11 +14,12 @@ public class CharacterMovement2D : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private SoundPlayer soundPlayer;
     [HideInInspector] public bool onGround;
     private bool touchingWall;
     private bool isJumping;
     private float jumpFallMultiplier = 2.5f;
-    private float layerDetectorRadius = 0.3f;
+    private float layerDetectorRadius = 0.4f;
     private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
     private bool facingRight = true;
 
@@ -28,6 +29,7 @@ public class CharacterMovement2D : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        soundPlayer = GetComponent<SoundPlayer>();
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -64,11 +66,12 @@ public class CharacterMovement2D : MonoBehaviour
     public void Move(float movement, bool jumpPressed)
     {
         // Move player's x position with SmoothDamp 
-        if (!touchingWall)
+        if (onGround || !touchingWall)
         {
             // Params: current position, target position, current velocity (modified by func), time to reach target (smaller = faster)
             Vector2 targetPosition = new Vector2(movement * movementSpeed, rigidBody.velocity.y);
             rigidBody.velocity = Vector2.SmoothDamp(rigidBody.velocity, targetPosition, ref curVelocity, movementSmoothing);
+            //soundPlayer.playWalkOnGrassSfx();
         }
 
         // Make sure player can't jump again until they're on ground and let go of jump button
@@ -80,6 +83,7 @@ public class CharacterMovement2D : MonoBehaviour
         {
             isJumping = true;
             rigidBody.velocity = Vector2.up * jumpForce;
+            soundPlayer.playJumpSfx();
         }
         // Modify player's falling speed by modifying gravity scale
         else if (isJumping && rigidBody.velocity.y < 0)
