@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject hotZone;
+    [SerializeField] private GameObject first_lever;
+    [SerializeField] private GameObject first_door;
     [SerializeField] private float t;
     [SerializeField] private float timeToReachPlayer;
 
@@ -19,13 +21,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        characterMovement2D = player.GetComponent<CharacterMovement2D>();
     }
 
     // Use this for initialization
     void Start()
     {
-        characterMovement2D = player.GetComponent<CharacterMovement2D>();
-        hotZonePosition = hotZone.transform.position;
+        if (hotZone != null)
+        {
+            hotZonePosition = hotZone.transform.position;
+        }
     }
 
     void FixedUpdate()
@@ -43,11 +48,19 @@ public class GameManager : MonoBehaviour
                 // Player reached a higher ground.
                 lastHeight = player.transform.position.y;
                 //Debug.Log(lastHeight);
-
-                // Move hot zone up
-                hotZonePosition.y = lastHeight - 1.25f;
-                hotZone.transform.position = hotZonePosition;
+                if(hotZone != null)
+                {
+                    // Move hot zone up
+                    hotZonePosition.y = lastHeight - 1.25f;
+                    hotZone.transform.position = hotZonePosition;
+                }
+                
             }
+        }
+        if (first_lever.GetComponent<Animator>().GetBool("leverFlipped"))
+        {
+            Debug.Log("OPENEDS");
+            first_door.SetActive(false);
         }
     }
 }
