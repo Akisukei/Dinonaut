@@ -16,8 +16,6 @@ public class CameraController : MonoBehaviour
     // LateUpdate is called after Update in each frame
     void LateUpdate()
     {
-        Debug.Log("offset:" + offset);
-        Debug.Log("player:" + player.transform.position);
         transform.position = player.transform.position + offset;
     }
 }
