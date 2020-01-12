@@ -7,16 +7,16 @@ public class CharacterMovement2D : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 350f;
     [SerializeField] private float movementSmoothing = 0.01f;       // time that takes to move character (read docs on SmoothDamp)
-    [SerializeField] private float jumpForce = 5;
+    [SerializeField] private float jumpForce = 8;
     [SerializeField] private LayerMask groundLayer;                 // what is considered ground for character
     [SerializeField] private LayerMask wallLayer;                   // what is considered a wall for character
     [SerializeField] private Transform layerDetector;               // empty object that's positioned center of an area to detect (i.e. feet)
 
     private Rigidbody2D rigidBody;
     private Animator animator;
-    public bool onGround;
+    [HideInInspector] public bool onGround;
     private bool touchingWall;
-    public bool isJumping;
+    private bool isJumping;
     private float jumpFallMultiplier = 2.5f;
     private float layerDetectorRadius = 0.3f;
     private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
@@ -58,8 +58,6 @@ public class CharacterMovement2D : MonoBehaviour
 
         // Update animation
         animator.SetFloat("runningSpeed", Mathf.Abs(rigidBody.velocity.x));
-        //animator.SetFloat("airborneSpeed", Mathf.Abs(rigidBody.velocity.y));
-        //animator.SetBool("onGround", onGround);
     }
 
     // Move player's x position when moving right/left and y if player jumps
