@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerGameplay : MonoBehaviour
 {
     public int score;
+    public Text scoreText;
+
     private bool inHotZone = false;
 
     private float nextActionTime = 0.0f;
@@ -22,6 +25,7 @@ public class PlayerGameplay : MonoBehaviour
     void Start()
     {
         score = 100;
+        scoreText.text = score.ToString();
     }
 
     // Update is called once per frame
@@ -37,6 +41,8 @@ public class PlayerGameplay : MonoBehaviour
                 TakeDamage();
             }
         }
+
+        scoreText.text = score.ToString();
     }
     
     void OnTriggerEnter2D(Collider2D collider)
