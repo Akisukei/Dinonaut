@@ -6,6 +6,7 @@ public class CharacterActions : MonoBehaviour
 {
     private Animator animator;
     private bool isKicking;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +22,7 @@ public class CharacterActions : MonoBehaviour
         else
             isKicking = false;
 
-        if (isKicking)
-            animator.SetBool("isKicking", true);
-        else
-            animator.SetBool("isKicking", false);
-        
+        animator.SetBool("isKicking", isKicking);
     }
     void fixedUpdate()
     {
