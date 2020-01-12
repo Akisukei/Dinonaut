@@ -41,11 +41,11 @@ GameObject:
   - component: {fileID: 6923056684714183820}
   - component: {fileID: 6923056684714183819}
   - component: {fileID: 6923056684714183818}
-  - component: {fileID: 6923056684714183817}
   - component: {fileID: 6923056684714183821}
   - component: {fileID: 6923056684714183824}
   - component: {fileID: 6923056684714183823}
   - component: {fileID: 6923056684714183822}
+  - component: {fileID: -8235459217516342841}
   m_Layer: 0
   m_Name: Blue Dino
   m_TagString: Player
@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6923056684714183816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.46, y: -1.03, z: 0}
+  m_LocalPosition: {x: -7.46, y: -1.136, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 6923056684372448874}
@@ -139,32 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6923056684714183817
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6923056684714183816}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.02649784, y: -0.021821469}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.41287708, y: 0.72068495}
-  m_EdgeRadius: 0
 --- !u!95 &6923056684714183821
 Animator:
   serializedVersion: 3
@@ -206,6 +180,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   layerDetector: {fileID: 6923056684372448874}
+  onGround: 0
 --- !u!114 &6923056684714183823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,3 +206,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9738e189b1dd31141b6bc936606c8514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &-8235459217516342841
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923056684714183816}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.029937586, y: -0.018347144}
+  m_Size: {x: 0.40669155, y: 0.7645346}
+  m_Direction: 0

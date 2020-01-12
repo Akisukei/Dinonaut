@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 7282994650679326192}
   - component: {fileID: 8241119407599834735}
   - component: {fileID: 720851769}
-  - component: {fileID: 720851765}
+  - component: {fileID: 4426482186376267032}
   m_Layer: 0
   m_Name: Green Dino
   m_TagString: Player
@@ -447,7 +447,7 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 1183701062}
   period: 2
---- !u!70 &720851765
+--- !u!70 &4426482186376267032
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,8 +460,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0028622947, y: -0.0315032}
-  m_Size: {x: 0.39887953, y: 0.6964239}
+  m_Offset: {x: -0.019507727, y: -0.0048769317}
+  m_Size: {x: 0.6098468, y: 0.75615406}
   m_Direction: 0
 --- !u!1 &7282994650932991851
 GameObject:
