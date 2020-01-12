@@ -31,12 +31,11 @@ public class MovePlatform : MonoBehaviour
         if (GetComponent<Animator>().GetBool("leverFlipped") )
         {
             //&& moved == false
-            t += Time.deltaTime / timeToReachTarget;
-
             Vector3 temp = new Vector3(0,-3,0);
             tilemap.transform.position = Vector3.Lerp(startPosition2, temp, t);
             floorTile.transform.position = Vector3.Lerp(startPosition3, temp, t);
 
+            t += Time.deltaTime / timeToReachTarget;
             transform.position = Vector3.Lerp(startPosition, target, t);
         }
     }
