@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 7282994650679325966}
   - component: {fileID: 7282994650679326192}
   - component: {fileID: 8241119407599834735}
+  - component: {fileID: 720851769}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Green Dino
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 200
   movementSmoothing: 0.01
-  jumpForce: 5
+  jumpForce: 8
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -170,6 +171,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   layerDetector: {fileID: 7282994650932991850}
+  onGround: 0
 --- !u!95 &7282994650679326192
 Animator:
   serializedVersion: 3
@@ -201,6 +203,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9738e189b1dd31141b6bc936606c8514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &720851769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282994650679326197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf9035fdfe3cfd4d85d18bf45ed8c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  period: 2
 --- !u!1 &7282994650932991851
 GameObject:
   m_ObjectHideFlags: 0
