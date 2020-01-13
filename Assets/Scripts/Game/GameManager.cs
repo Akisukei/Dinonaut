@@ -65,5 +65,9 @@ public class GameManager : MonoBehaviour
         {
             first_door.SetActive(false);
         }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 }

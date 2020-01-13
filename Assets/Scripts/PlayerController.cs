@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
+        
     }
 
     // FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
