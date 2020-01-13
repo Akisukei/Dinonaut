@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerGameplay : MonoBehaviour
 {
@@ -68,5 +69,9 @@ public class PlayerGameplay : MonoBehaviour
         Debug.Log("Damage taken: " + score);
         score -= 10;
         animator.SetBool("isDamaged", true);
+
+        if (score == 0)
+            SceneManager.LoadScene("MenuScene");
+
     }
 }

@@ -6,6 +6,7 @@ public class AppearingFloor : MonoBehaviour
 {
     private GameObject pause;
     [SerializeField] private GameObject tilemap;
+    [SerializeField] private GameObject tilewall;
 
     void Start()
     {
@@ -16,6 +17,9 @@ public class AppearingFloor : MonoBehaviour
         if (GetComponent<Animator>().GetBool("leverFlipped"))
         {
             tilemap.SetActive(true);
+
+            if (tilewall != null)
+                tilewall.SetActive(false);
         }
         else
         {

@@ -16,13 +16,14 @@ public class GameManager : MonoBehaviour
 
     private CharacterMovement2D characterMovement2D;
 
-    private float lastHeight = -9999;
+    private float lastHeight = -40;
     private Vector3 hotZonePosition;
     private Vector3 lastPosition;
-
+    private bool justSpawned;
     void Awake()
     {
         characterMovement2D = player.GetComponent<CharacterMovement2D>();
+        justSpawned = true;
     }
 
     // Use this for initialization
@@ -51,26 +52,18 @@ public class GameManager : MonoBehaviour
                 lastHeight = player.transform.position.y;
                 lastPosition = new Vector3(player.transform.position.x, lastHeight, 0);
                 //Debug.Log(lastHeight);
-                if(hotZone != null)
+                if(hotZone != null && !justSpawned)
                 {
                     // Move hot zone up
                     hotZonePosition.y = lastHeight - 1.25f;
                     hotZone.transform.position = hotZonePosition;
                 }
-                
+                justSpawned = false; 
             }
         }
         if (first_lever != null && first_lever.GetComponent<Animator>().GetBool("leverFlipped"))
         {
             first_door.SetActive(false);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Lava"))
-        {
-            transform.position = lastPosition;
         }
     }
 }
