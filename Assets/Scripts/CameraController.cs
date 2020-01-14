@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //public GameObject player;
     public Transform player;
-    private Vector3 offset;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        offset = transform.position - player.transform.position;
-        Debug.Log("offseT:" + offset);
-        Debug.Log("before cam:" + transform.position);
-    }
-
+    public float verticalDistance = 1.3f;
+    public float horizontalDistance = 0f;
+    
     // LateUpdate is called after Update in each frame
     void LateUpdate()
     {
+        // anchor camera's position to player's
+        transform.position = new Vector3(
+            player.position.x + horizontalDistance, 
+            player.position.y + verticalDistance, 
+            transform.position.z
+        );
+    }
 
-        //transform.position = transform.position + offset;
-        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
-        Debug.Log("cam:" + transform.position);
+    public void cameraShake()
+    {
+
     }
 }
