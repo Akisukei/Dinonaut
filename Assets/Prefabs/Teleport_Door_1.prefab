@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6686722653420011560}
   - component: {fileID: 6686722653420011567}
   - component: {fileID: 9005354487170967019}
+  - component: {fileID: 1452169372}
   m_Layer: 0
   m_Name: Teleport_Door_1
   m_TagString: Teleport
@@ -174,3 +175,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleport: {fileID: 6686722653358243991}
   lever: {fileID: 0}
+--- !u!114 &1452169372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6686722653420011566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511de07fa9f386d478e50dfb10af2aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiObject: {fileID: 0}

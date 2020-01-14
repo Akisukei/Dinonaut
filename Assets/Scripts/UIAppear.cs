@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class UIAppear : MonoBehaviour
 {
     private GameObject pause;
+    public Text text;
+    [SerializeField] private string button;
     [SerializeField] private GameObject uiObject;
     // Start is called before the first frame update
     void Start()
     {
         pause = uiObject;
         uiObject.SetActive(false);
+
+        text.text = "Press " + button.ToString();
     }
 
     void OnTriggerEnter2D(Collider2D player)
