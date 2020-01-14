@@ -7,13 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterMovement2D movementController;
 
+    private Animator animator;
     private float moveHorizontal = 0f;
     private bool jumpPressed = false;
+    //private bool isKicking = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Updates every frame
@@ -23,7 +25,12 @@ public class PlayerController : MonoBehaviour
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
-        
+
+        //if (Input.GetButtonDown("Interact"))
+        //    isKicking = true;
+        //else
+        //    isKicking = false;
+        animator.SetBool("isKicking", Input.GetButtonDown("Interact"));
     }
 
     // FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
