@@ -6,41 +6,46 @@ public class TeleportDoor : MonoBehaviour
 {
     [SerializeField] private Transform teleport;
     [SerializeField] private GameObject lever;
-
+    private Collider2D player;
     private Animator animator;
-    private bool unlockDoor;
-    private bool useDoor;
-
+    private bool isDoorUnlocked;
+    private bool canUseDoor;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
-        unlockDoor = false;
-        useDoor = false;
+        isDoorUnlocked = false;
+        canUseDoor = false;
     }
     
     void Update()
     {
         if (lever.GetComponent<Animator>().GetBool("leverFlipped"))
-            unlockDoor = true;
+            isDoorUnlocked = true;
         else
-            unlockDoor = false;
+            isDoorUnlocked = false;
+        animator.SetBool("openDoor", isDoorUnlocked);
 
-        if (Input.GetButtonDown("Submit"))
-            useDoor = true;
-        else
-            useDoor = false;
-
-        animator.SetBool("openDoor", unlockDoor);
-
+        if (isDoorUnlocked && canUseDoor && Input.GetButtonDown("Submit"))
+            Teleport();
     }
-    void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (useDoor && unlockDoor)
-            {
-                other.transform.position = teleport.position;
-            }
+            canUseDoor = true;
+            player = other;
         }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            canUseDoor = false;
+        }
+    }
+    private void Teleport()
+    {
+        player.transform.position = teleport.position;
     }
 }
