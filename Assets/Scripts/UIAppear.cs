@@ -15,7 +15,8 @@ public class UIAppear : MonoBehaviour
         pause = uiObject;
         uiObject.SetActive(false);
 
-        text.text = "Press " + button.ToString();
+        if (text != null)
+            text.text = "Press " + button.ToString();
     }
 
     void OnTriggerEnter2D(Collider2D player)
