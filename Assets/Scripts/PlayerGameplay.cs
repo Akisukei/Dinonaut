@@ -16,7 +16,7 @@ public class PlayerGameplay : MonoBehaviour
     [SerializeField] private int hotZoneDamage = 10;
     [SerializeField] private int lavaDamage = 50;
 
-    private CharacterMovement2D characterMovement2D;
+    private Player playerMovement;
 
     private Vector3 respawnPosition;
 
@@ -26,7 +26,7 @@ public class PlayerGameplay : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        characterMovement2D = GetComponent<CharacterMovement2D>();
+        playerMovement = GetComponent<Player>();
     }
 
     // Start is called before the first frame update
@@ -38,12 +38,11 @@ public class PlayerGameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (characterMovement2D.onGround && !inHotZone)
+        if (!playerMovement.isAirborne && !playerMovement.isDoubleJumping && !inHotZone)
         {
             respawnPosition = transform.position;
         }
-
-        animator.SetBool("isDamaged", false);
+        
         if (Time.time > nextActionTime)
         {
             nextActionTime += period;
@@ -84,7 +83,7 @@ public class PlayerGameplay : MonoBehaviour
     void TakeDamage(int damage)
     {
         score -= damage;
-        animator.SetBool("isDamaged", true);
+        animator.Play("g_dino_damaged");
 
         // If score reaches 0, it's game over
         if (score == 0)

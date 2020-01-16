@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private float t; // Used for delta time.
 
-    private CharacterMovement2D characterMovement2D;
+    private Player playerMovement;
 
     private float lastHeight = -40;
     private Vector3 hotZonePosition;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        characterMovement2D = player.GetComponent<CharacterMovement2D>();
+        playerMovement = player.GetComponent<Player>();
         justSpawned = true;
     }
 
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         t += Time.deltaTime / timeToReachPlayer;
 
-        if (characterMovement2D.onGround)
+        if (!playerMovement.isAirborne && !playerMovement.isDoubleJumping)
         {
             if (lastHeight < player.transform.position.y && Mathf.Abs(player.transform.position.y - lastHeight) > 1)
             {
