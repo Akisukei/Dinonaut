@@ -38,7 +38,7 @@ public class PlayerGameplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerMovement.isAirborne && !playerMovement.isDoubleJumping && !inHotZone)
+        if (playerMovement.onGround && !inHotZone)
         {
             respawnPosition = transform.position;
         }

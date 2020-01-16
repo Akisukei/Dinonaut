@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundPlayer : MonoBehaviour
+public class CharacterSoundPlayer : MonoBehaviour
 {
     public AudioClip[] jumpAudioClips;
     private AudioSource audioSource;

@@ -23,7 +23,7 @@ public class CharacterMovement2D : MonoBehaviour
     // Components, scripts, and object references
     private Rigidbody2D rigidBody;
     private Animator animator;
-    private SoundPlayer soundPlayer;
+    private CharacterSoundPlayer soundPlayer;
     private Transform groundDetector;               // empty object that's positioned center of an area to detect (i.e. feet)
     private Transform leftWallDetector;
     private Transform rightWallDetector;
@@ -44,7 +44,7 @@ public class CharacterMovement2D : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        soundPlayer = GetComponent<SoundPlayer>();
+        soundPlayer = GetComponent<CharacterSoundPlayer>();
         groundDetector = GameObject.Find("GroundDetector").transform;
         leftWallDetector = GameObject.Find("LeftWallDetector").transform;
         rightWallDetector = GameObject.Find("RightWallDetector").transform;

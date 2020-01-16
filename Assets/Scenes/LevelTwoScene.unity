@@ -419,6 +419,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.018511912
       objectReference: {fileID: 0}
+    - target: {fileID: 7282994650679325965, guid: ca1e7e30266fd3748a83b4b85402d268,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7282994650679326195, guid: ca1e7e30266fd3748a83b4b85402d268,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -479,7 +484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Dino
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7282994650679325965, guid: ca1e7e30266fd3748a83b4b85402d268, type: 3}
+    - {fileID: 7282994650679325966, guid: ca1e7e30266fd3748a83b4b85402d268, type: 3}
+    - {fileID: 7282994650679326194, guid: ca1e7e30266fd3748a83b4b85402d268, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ca1e7e30266fd3748a83b4b85402d268, type: 3}
 --- !u!1 &341184836 stripped
 GameObject:
@@ -505,6 +513,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &341184839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341184836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91799459bf285a04b89a86d44a6a1d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  invincible: 0
+  hurt: 0
+  coins: 0
+  invulnerableTime: 2
+  gravity: 0
+  jumpHeight: 0
+  minJumpHeight: 0
+  speed: 0
+  facing: 1
+  isAirborne: 0
+  isDoubleJumping: 0
+  velocity: {x: 0, y: 0}
+  directionalInput: {x: 0, y: 0}
+--- !u!114 &341184840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341184836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29669e8d1b17c5f4ca7de6dda26c513f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 768
+  rayCount_h: 0
+  rayCount_v: 0
+  raySpacing_h: 0
+  raySpacing_v: 0
+  topLeft: {x: 0, y: 0}
+  topRight: {x: 0, y: 0}
+  botLeft: {x: 0, y: 0}
+  botRight: {x: 0, y: 0}
+--- !u!61 &341184841
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341184836}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &341184850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7282994650679326195, guid: ca1e7e30266fd3748a83b4b85402d268,
+    type: 3}
+  m_PrefabInstance: {fileID: 341184835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &549857722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4872,6 +4961,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1782863206331566393, guid: 4351d641e5087ec469d100a0e553f239,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 341184850}
     - target: {fileID: 1782863206331566397, guid: 4351d641e5087ec469d100a0e553f239,
         type: 3}
       propertyPath: m_Name

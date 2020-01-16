@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
     {
         t += Time.deltaTime / timeToReachPlayer;
 
-        if (!playerMovement.isAirborne && !playerMovement.isDoubleJumping)
+        //if (!playerMovement.isAirborne && !playerMovement.isDoubleJumping)
+        if (playerMovement.onGround)
         {
             if (lastHeight < player.transform.position.y && Mathf.Abs(player.transform.position.y - lastHeight) > 1)
             {
