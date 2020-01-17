@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     // INTERNAL INSTANCE MEMBERS
     private Vector2 bodyVelocity;
     private float gravity;                          // general gravity on body
-    private float moveDirection = 0f;               // direction in which character is moving
-    private Vector2 curVelocity = Vector2.zero;     // a reference for SmoothDamp method to use
+    private float moveDirection = 0f;                // direction in which character is moving
+    private float velocityXSmoothing;     // a reference for SmoothDamp method to use
     private bool jumpPressed = false;
     private bool isJumping = false;            
     private float fallGravityMultiplier = 2.5f;     // 2.5 means gravity increased by 2.5x when falling after jumping
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         isKicking = false;
 
 		//Checks current state of game obj and makes adjustment to velocity if necessary
-		CheckState ();
+		//CheckState ();
     }
 
     // FixedUpdate is called at a fixed interval, all physics code should be in here only
@@ -77,10 +77,31 @@ public class Player : MonoBehaviour
         if (jumpPressed) OnJumpDown();
         jumpPressed = false;
 
+        calcBodyVelocity();
+        Move(bodyVelocity * Time.deltaTime);
+
+        //Checks current state of game obj and makes adjustment to velocity if necessary
+        CheckState();
+    }
+
+    // Get player's input to determine action states
+    private void GetPlayerInput()
+    {
+        moveDirection = Input.GetAxisRaw("Horizontal");     // 1 = moving right, -1 = moving left, 0 = idle
+        if (Input.GetButtonDown("Jump"))
+            jumpPressed = true;
+        if (Input.GetButtonDown("Interact"))
+            isKicking = true;
+    }
+
+    // Calculate the velocity of player's game object based their state
+    private void calcBodyVelocity()
+    {
         // gravity makes game object fall at all times
         bodyVelocity.y += gravity * Time.deltaTime;
-        // move player's x axis with smoothdamp
-        Move(moveDirection * moveSpeed * Time.fixedDeltaTime);
+        // calculate horizontal movement with smoothdamp
+        float targetXPosition = moveDirection * moveSpeed;
+        bodyVelocity.x = Mathf.SmoothDamp(bodyVelocity.x, targetXPosition, ref velocityXSmoothing, moveSmoothing); // Params: current position, target position, current velocity (modified by func), time to reach target (smaller = faster)
 
         // modify player's falling gravity if jumping
         if (isJumping)
@@ -97,18 +118,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Get player's input to determine action states
-    private void GetPlayerInput()
-    {
-        moveDirection = Input.GetAxisRaw("Horizontal");     // 1 = moving right, -1 = moving left, 0 = idle
-        if (Input.GetButtonDown("Jump"))
-            jumpPressed = true;
-        if (Input.GetButtonDown("Interact"))
-            isKicking = true;
-    }
-
     // Moves the player. Raycast checks for walls and floors collision.
-    public void Move (float moveAmount)
+    public void Move (Vector2 moveAmount)
 	{
         // Updates raycast position as game object moves.
         raycastController.UpdateRayOrigins();
@@ -119,15 +130,10 @@ public class Player : MonoBehaviour
             FlipFacingDirection();
 
         // Check collisions - if found, moveAmount velocity will be reduced appropriately
-        Vector2 targetPosition = new Vector2(moveAmount, bodyVelocity.y);
-        raycastController.checkCollisions(ref targetPosition);
-
-        // Params: current position, target position, current velocity (modified by func), time to reach target (smaller = faster)
-        //Vector2 targetPosition = new Vector2(moveAmount, bodyVelocity.y);
-        bodyVelocity = Vector2.SmoothDamp(bodyVelocity, targetPosition, ref curVelocity, moveSmoothing);
+        raycastController.checkCollisions(ref moveAmount);
 
 		// Actually changing the velocity of game object
-		//transform.Translate (moveAmount);
+		transform.Translate(moveAmount);
 	}
 
     private void OnJumpDown()
@@ -164,7 +170,11 @@ public class Player : MonoBehaviour
         // If grounded, reset falling velocity
         // If hit ceiling, set velocity.y to 0 to prevent accumulating
         if (onGround || raycastController.collision.above)
+        {
             bodyVelocity.y = 0f;
+            isJumping = false;
+        }
+            
 
 		//Apparantly, Color isn't something you can modify like transform.position
 		//Reduce transparency by half when hurt.
@@ -223,7 +233,7 @@ public class Player : MonoBehaviour
     {
         if (!invincible)
         {
-            bodyVelocity.y = 0;
+            //rBody.velocity.y = 0;
             animator.Play("g_dino_damaged");
             //Receive damage
             health--;

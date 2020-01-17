@@ -11,24 +11,24 @@ public class RaycastController : MonoBehaviour
 	public const float widthBuffer = .015f;
 	//Buffer distance
 	private const float dstBetweenRays = .25f;
-	//Should have 4 rays for each side
+    //Should have 4 rays for each side
 
-	public int rayCount_h;
-	//number of horizontal rays
-	public int rayCount_v;
-	//number of vertical rays
+    private int rayCount_h;
+    //number of horizontal rays
+    private int rayCount_v;
+    //number of vertical rays
 
-	public float raySpacing_h;
-	public float raySpacing_v;
+    private float raySpacing_h;
+    private float raySpacing_v;
 
 	private BoxCollider2D box;
 	//box collider of game object
 
 	//Raycast origins
-	public Vector2 topLeft;
-	public Vector2 topRight;
-	public Vector2 botLeft;
-	public Vector2 botRight;
+	private Vector2 topLeft;
+    private Vector2 topRight;
+    private Vector2 botLeft;
+    private Vector2 botRight;
 
 	//Collisions information
 	public CollisionInformation collision;
