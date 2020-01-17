@@ -66,9 +66,6 @@ public class Player : MonoBehaviour
         animator.SetFloat("runningSpeed", Mathf.Abs(moveDirection));
         animator.SetBool("isKicking", isKicking);
         isKicking = false;
-
-		//Checks current state of game obj and makes adjustment to velocity if necessary
-		//CheckState ();
     }
 
     // FixedUpdate is called at a fixed interval, all physics code should be in here only
@@ -92,6 +89,7 @@ public class Player : MonoBehaviour
             jumpPressed = true;
         if (Input.GetButtonDown("Interact"))
             isKicking = true;
+        animator.SetBool("isCrouching", Input.GetButton("Crouch"));
     }
 
     // Calculate the velocity of player's game object based their state
