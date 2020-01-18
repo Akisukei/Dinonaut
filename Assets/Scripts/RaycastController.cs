@@ -7,6 +7,8 @@ public class RaycastController : MonoBehaviour
 {
 	//Layer in which to detect a collision
 	public LayerMask collisionMask;
+    //Option to show raycast red lines
+    public bool showRaycast = false;
 
 	public const float widthBuffer = .015f;
 	//Buffer distance
@@ -114,7 +116,7 @@ public class RaycastController : MonoBehaviour
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, rayDirection, rayLength, collisionMask);
 
 			//Shows raycast in scene viewer
-			//Debug.DrawRay (rayOrigin, rayDirection, Color.red);
+			if(showRaycast) Debug.DrawRay (rayOrigin, rayDirection, Color.red);
 
 			if (hit) {
 				//If already colliding with obstacle, leave as is.
@@ -151,7 +153,7 @@ public class RaycastController : MonoBehaviour
 			rayOrigin += Vector2.right * (raySpacing_v * i + moveAmount.x);
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, rayDirection, rayLength, collisionMask);
 
-			//Debug.DrawRay (rayOrigin, rayDirection, Color.red);
+			if(showRaycast) Debug.DrawRay (rayOrigin, rayDirection, Color.red);
 
 			//If collision found, update moveAmount.y by reducing the change in velocity
 			if (hit) {
