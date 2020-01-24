@@ -22,16 +22,19 @@ public class Player : MonoBehaviour
     private RaycastController raycastController;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private CharacterSoundPlayer charSfxPlayer;
+    private DinoSoundPlayer charSfxPlayer;
     // INTERNAL INSTANCE MEMBERS
     private Vector2 bodyVelocity;
     private float gravity;                          // general gravity on body
-    private float moveDirection = 0f;                // direction in which character is moving
-    private float velocityXSmoothing;     // a reference for SmoothDamp method to use
+
+    private float moveDirection = 0f;               // direction in which character is moving
+    private float velocityXSmoothing;               // a reference for SmoothDamp method to use
+
     private bool jumpPressed = false;
     private bool isJumping = false;            
     private float fallGravityMultiplier = 2.5f;     // 2.5 means gravity increased by 2.5x when falling after jumping
-    private bool isKicking = false;
+
+    private bool interactPressed = false;
 
 
     // TODO re-evaluate fields to use?
@@ -48,14 +51,15 @@ public class Player : MonoBehaviour
         raycastController = GetComponent<RaycastController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        charSfxPlayer = GetComponent<DinoSoundPlayer>();
     }
 
     // Use this for initialization
     void Start ()
 	{
-		//Kinematic formula, solve for acceleration going down
+		// Kinematic formula, solve for acceleration going down
 		gravity = -(2 * 2.5f) / Mathf.Pow (0.36f, 2);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -64,8 +68,16 @@ public class Player : MonoBehaviour
 
         // update animator
         animator.SetFloat("runningSpeed", Mathf.Abs(moveDirection));
-        animator.SetBool("isKicking", isKicking);
-        isKicking = false;
+        animator.SetBool("isKicking", interactPressed);
+
+        // update sound
+        if(charSfxPlayer != null)
+        {
+            charSfxPlayer.playWalkSfx(moveDirection != 0 && onGround);  // 1st arg: isWalking bool to play or stop
+
+            if (jumpPressed) charSfxPlayer.playJumpSfx();
+            if (interactPressed) charSfxPlayer.playKickSfx();
+        }
     }
 
     // FixedUpdate is called at a fixed interval, all physics code should be in here only
@@ -73,6 +85,8 @@ public class Player : MonoBehaviour
     {
         if (jumpPressed) OnJumpDown();
         jumpPressed = false;
+
+        if (interactPressed) OnInteract();
 
         calcBodyVelocity();
         Move(bodyVelocity * Time.deltaTime);
@@ -88,7 +102,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
         if (Input.GetButtonDown("Interact"))
-            isKicking = true;
+            interactPressed = true;
         animator.SetBool("isCrouching", Input.GetButton("Crouch"));
     }
 
@@ -146,9 +160,13 @@ public class Player : MonoBehaviour
             {
                 bodyVelocity = Vector2.up * jumpForce;
                 isJumping = true;
-                //soundPlayer.playJumpSfx();
             }
         }
+    }
+    
+    private void OnInteract()
+    {
+        interactPressed = false;
     }
 
 	// Sets the facing direction of player
